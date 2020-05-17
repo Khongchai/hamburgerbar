@@ -1,0 +1,134 @@
+<html lang="en">
+<head>
+    <style>
+        body
+        {
+            height: 1000px;
+        }
+        #hamburger
+        {
+            text-align: right;
+            display: none;
+        }
+        @media screen and (max-width: 780px)
+        {
+            #hamburger 
+            {
+                display: block;
+            }
+
+        }
+        #sidebarMobile
+        {
+            height: 100%;
+            width: 30%;
+            position: fixed;
+            background:black;
+            bottom: 0;
+            right: 0;
+            text-align: center;
+            z-index: 1;
+            
+        }
+        #menuMobileList a
+        {
+            font-weight: lighter;
+            
+            display: block;
+            margin-top: 100px;
+            font-size: 12px;
+            letter-spacing: 3px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            text-decoration: none;
+            margin: 30px;
+            border-bottom: 1px solid white;
+            padding-bottom: 10px;
+        }
+        #menuMobileList
+        {
+            
+            height: fit-content;
+            margin-top: 20%;
+        }
+        #hamburgerActivate
+        {
+            right: 10px;
+            color: grey;
+            position: fixed;
+            font-size: 25px;
+            z-index: 2;
+            cursor: pointer;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamburger test</title>
+</head>
+<body>
+    <div id="hamburger">
+        <label for="" id="hamburgerActivate">&#9776;</label>
+
+        <div id="sidebarMobile">
+            <div id="menuMobileList" >
+                <br>
+                <a href="">FOO 1</a>
+                <br>
+                <a href="">FOO 2</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var rightBar = document.getElementById("sidebarMobile");
+        document.addEventListener("DOMContentLoaded", function()
+        {
+            document.querySelector("#hamburgerActivate").onclick = () => 
+            {
+                if (rightBar.style.opacity === "0")
+                {
+                    var op = 0;
+                    var opacityChange = setInterval(() => 
+                    {
+                        if (op >= 1)
+                        {
+                            clearInterval(opacityChange);
+                        }
+                        else
+                        {
+                            op += 0.05;
+                            rightBar.style.opacity = op;
+                        }
+                        
+                    },10)
+                }
+                else
+                {
+                    var op = 1;
+                    var opacityChange = setInterval(() => 
+                    {
+                        if (op <= 0)
+                        {
+                            clearInterval(opacityChange);
+                            rightBar.style.opacity = 0;
+                        }
+                        else
+                        {
+                            op -= 0.05;
+                            rightBar.style.opacity = op;
+                        }
+                        
+                    },10)
+                }
+            }
+        });
+
+        document.getElementById("sidebarMobile").style.opacity = "0";
+
+        
+
+        
+    </script>
+    
+</body>
+</html>
